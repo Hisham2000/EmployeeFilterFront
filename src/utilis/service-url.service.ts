@@ -6,6 +6,7 @@ import {Injectable} from "@angular/core";
 export class  ServiceUrl{
   public baseUrl = '';
   public static baseURlPath = '';
+  public login = "/auth/login";
 
   constructor() {
     this.getUrl()

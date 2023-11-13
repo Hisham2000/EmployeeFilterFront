@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import * as jwt_decode from 'jwt-decode';
 import {catchError, map, Observable, throwError} from "rxjs";
 import Swal from 'sweetalert2'
-import {ServiceUrlService} from "./service-url.service";
+import {ServiceUrl} from "./service-url.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class ServiceCall {
   response = {};
   r2: any;
 
-  constructor(private _serviceUrl: ServiceUrlService, private _http: HttpClient, private _router: Router) {
+  constructor(private _serviceUrl: ServiceUrl, private _http: HttpClient, private _router: Router) {
   }
 
   getDefaultHeaders(config: any) {
