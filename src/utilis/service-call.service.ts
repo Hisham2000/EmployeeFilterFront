@@ -106,6 +106,7 @@ export class ServiceCall {
   }
 
   public postObservable<T>(url: string, requestBody: any, _headers: any, alertError = true): Observable<T> {
+    debugger
     url = this.handleUrl(url);
     if (this.checkJwt() == false) {
       this.response = {};
@@ -117,6 +118,7 @@ export class ServiceCall {
             return data;
           }
         }), catchError(error => {
+          debugger
           this.handleError(error, alertError, url);
           return throwError(null);
         })
@@ -127,6 +129,7 @@ export class ServiceCall {
   }
 
   public handleError(error: any, alertError: boolean, url: string) {
+    debugger
     if (error instanceof Error && error.message == '') {
       return throwError(null);
     }

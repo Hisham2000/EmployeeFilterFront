@@ -43,7 +43,6 @@ export class LoginComponent {
     };
     this._serviceCall.postObservable(url, requestBody, {}).subscribe((response: any) => {
       localStorage.setItem("Authorization", "Bearer " + response.token);
-      let getLoggedInUser = this._serviceCall.getLoggedInUser();
       this._router.navigate(['/employee']);
 
       this.send = false;
