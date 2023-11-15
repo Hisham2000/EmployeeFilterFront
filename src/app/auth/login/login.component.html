@@ -19,9 +19,6 @@
     </span>
     </div>
 
-    <div class="flex justify-content-center">
-      <a routerLink="/auth/forget-password">Forget Password ..?</a>
-    </div>
 
     <div class="d-flex justify-content-center" style="margin-top: 2%">
       <button class="btn btn-primary rounded w-50" type="ngSubmit" [disabled]="send || !myForm.valid"><span><i
@@ -29,18 +26,4 @@
       </button>
     </div>
   </form>
-
-  <div class="justify-content-center" style="margin-top: 2%">
-    <p class="d-block w-100">Or Sign Up Using</p>
-    <div class="d-block">
-      <span style="margin: 1%; padding: 1%"><i class="fab fa-facebook" style="color: #1877f2;"></i></span>
-      <span style="margin: 1%; padding: 1%"><i class="fas fa-envelope" style="color: #D14836;" ></i></span>
-      <span style="margin: 1%; padding: 1%"><i class="fab fa-twitter" style="color: #1da1f2;"></i></span>
-    </div>
-  </div>
-
-  <div style="position: relative; bottom: 0px; margin-top: 10%">
-    <p class="d-block">Or Sign Up Using</p>
-    <a routerLink="/auth/register">Sign Up</a>
-  </div>
 </div>

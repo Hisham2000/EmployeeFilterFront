@@ -7,6 +7,10 @@ export class  ServiceUrl{
   public baseUrl = '';
   public static baseURlPath = '';
   public login = "/auth/login";
+  public getAllUsers = "/user/all";
+  public logOut = "/auth/logoutV2";
+  public getAllDepartement = "/department/all";
+  public getAllContractType = "/contractType/all";
 
   constructor() {
     this.getUrl()

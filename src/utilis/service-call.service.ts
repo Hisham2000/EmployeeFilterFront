@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
-import * as jwt_decode from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 import {catchError, map, Observable, throwError} from "rxjs";
 import Swal from 'sweetalert2'
 import {ServiceUrl} from "./service-url.service";
@@ -59,8 +59,7 @@ export class ServiceCall {
     if (token != null) {
       token = token.substring("Bearer ".length);
       let decode: any = {};
-      // @ts-ignore
-      decode = jwt_decode(token);
+      decode = jwtDecode(token);
       if (decode.exp * 1000 < Date.now()) {
         localStorage.clear();
         expired = true;
@@ -74,8 +73,7 @@ export class ServiceCall {
     if (token != null) {
       token = token.substring("Bearer ".length);
       let decode: any = {};
-      // @ts-ignore
-      decode = jwt_decode(token);
+      decode = jwtDecode(token);
       if (decode.sub) {
         let user = JSON.parse(decode.sub);
         return user;
@@ -106,7 +104,6 @@ export class ServiceCall {
   }
 
   public postObservable<T>(url: string, requestBody: any, _headers: any, alertError = true): Observable<T> {
-    debugger
     url = this.handleUrl(url);
     if (this.checkJwt() == false) {
       this.response = {};
@@ -118,7 +115,6 @@ export class ServiceCall {
             return data;
           }
         }), catchError(error => {
-          debugger
           this.handleError(error, alertError, url);
           return throwError(null);
         })
@@ -129,7 +125,6 @@ export class ServiceCall {
   }
 
   public handleError(error: any, alertError: boolean, url: string) {
-    debugger
     if (error instanceof Error && error.message == '') {
       return throwError(null);
     }

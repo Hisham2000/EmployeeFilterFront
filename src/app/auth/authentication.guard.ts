@@ -6,7 +6,7 @@ export const authenticationGuard: CanActivateFn = (route, state) => {
     const serviceCall = inject(ServiceCall);
     const router = inject(Router);
     if (localStorage.length > 0 && !serviceCall.checkJwt()) {
-      let loginUser = serviceCall.getLoggedInUser();
+      // let loginUser = serviceCall.getLoggedInUser();
       router.navigate(['/employee']);
       return false;
     }
