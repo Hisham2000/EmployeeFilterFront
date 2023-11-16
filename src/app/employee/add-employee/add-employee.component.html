@@ -1,1 +1,17 @@
-<p>add-employee works!</p>
+<div class="card container">
+  <div class="card-header text-center">
+    <p class="lead display-6">Add New Employee</p>
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="addNewEmployee()" [formGroup]="myForm">
+      <div class="flex justify-content-center" style="margin-top: 5%" style="margin-top: 5%">
+      <span class="p-float-label d-block w-100">
+          <input pInputText class="p-inputtext-sm d-block w-100
+                                {{(myForm.get('email')?.errors && myForm.get('email')?.touched)?'ng-dirty ng-invalid':''}}"
+                 id="email" type="email" required formControlName="email"/>
+          <label htmlFor="email"><span><i class="pi pi-envelope"></i></span> Email</label>
+      </span>
+      </div>
+    </form>
+  </div>
+</div>

@@ -7,11 +7,12 @@ import {ButtonModule} from "primeng/button";
 import {MultiSelectModule} from "primeng/multiselect";
 import {FormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
+import {DialogModule} from "primeng/dialog";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, TableModule, ButtonModule, MultiSelectModule, FormsModule],
+  imports: [CommonModule, TableModule, ButtonModule, MultiSelectModule, FormsModule, DialogModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit{
   departments: any;
   managers: any;
   contractTypes: any;
-
+  isEdit = false;
   constructor(private _serviceUrl: ServiceUrl, private _serviceCall: ServiceCall, protected _router: Router) {
   }
 
@@ -61,5 +62,10 @@ export class HomeComponent implements OnInit{
 
   clear(dt1: Table) {
     dt1.clear();
+  }
+
+  openEdit(user: any) {
+    debugger
+    this.isEdit = true;
   }
 }
