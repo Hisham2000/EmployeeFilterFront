@@ -12,11 +12,12 @@ import {RippleModule} from "primeng/ripple";
 import {InputTextModule} from "primeng/inputtext";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
+import {DropdownModule} from "primeng/dropdown";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, TableModule, ButtonModule, MultiSelectModule, FormsModule, DialogModule, ReactiveFormsModule, RippleModule, InputTextModule, ToastModule],
+  imports: [CommonModule, TableModule, ButtonModule, MultiSelectModule, FormsModule, DialogModule, ReactiveFormsModule, RippleModule, InputTextModule, ToastModule, DropdownModule],
   templateUrl: './home.component.html',
   providers: [MessageService],
   styleUrls: ['./home.component.scss']
@@ -27,8 +28,8 @@ export class HomeComponent implements OnInit {
   departments: any;
   managers: any;
   contractTypes: any;
-  isEdit = false;
   clonedUser: { [s: string]: any } = {};
+  loggedInUser: any;
 
   constructor(private _serviceUrl: ServiceUrl,
               private _serviceCall: ServiceCall,
@@ -48,6 +49,7 @@ export class HomeComponent implements OnInit {
   });
 
   ngOnInit() {
+    this.loggedInUser = this._serviceCall.getLoggedInUser();
     this.getALlUsers();
     this.getAllDepartments();
     this.getAllContractType();
@@ -83,15 +85,6 @@ export class HomeComponent implements OnInit {
 
   clear(dt1: Table) {
     dt1.clear();
-  }
-
-  openEdit(user: any) {
-    debugger
-    this.isEdit = true;
-  }
-
-  submitEdit() {
-
   }
 
   onRowEditInit(user: any) {
