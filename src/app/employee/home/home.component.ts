@@ -37,17 +37,6 @@ export class HomeComponent implements OnInit {
               private _messageService: MessageService) {
   }
 
-  myForm = new FormGroup({
-    email: new FormControl(null, [
-      Validators.required,
-      Validators.email
-    ]),
-    password: new FormControl(null, [
-      Validators.required,
-      Validators.minLength(9)
-    ])
-  });
-
   ngOnInit() {
     this.loggedInUser = this._serviceCall.getLoggedInUser();
     this.getALlUsers();
