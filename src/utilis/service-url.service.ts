@@ -11,6 +11,7 @@ export class  ServiceUrl{
   public logOut = "/auth/logoutV2";
   public getAllDepartement = "/department/all";
   public getAllContractType = "/contractType/all";
+  public updateUser = "/user/update";
 
   constructor() {
     this.getUrl()

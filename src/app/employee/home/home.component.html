@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <p-table #dt1 [value]="users" styleClass="p-datatable-gridlines p-datatable-striped"
          [tableStyle]="{ 'min-width': '60rem' }"
          [paginator]="true"
@@ -5,7 +6,8 @@
          [showCurrentPageReport]="true"
          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
          [rowsPerPageOptions]="[10, 25, 50]"
-
+         editMode="row"
+         dataKey="id"
 >
   <ng-template pTemplate="caption">
     <div class="flex align-items-center justify-content-between">
@@ -138,11 +140,27 @@
       <th>Status</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-user>
-    <tr>
-      <td style="cursor: pointer" (click)="openEdit(user)"><span><i class="pi pi-pencil"></i></span></td>
+  <ng-template pTemplate="body" let-user let-editing="editing" let-ri="rowIndex">
+    <tr [pEditableRow]="user">
+<!--      <td style="cursor: pointer" (click)="openEdit(user)"><span><i class="pi pi-pencil"></i></span></td>-->
+      <td>
+        <div class="flex align-items-center justify-content-center gap-2">
+          <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(user)" class="p-button-rounded p-button-text"></button>
+          <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(user)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+          <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(user, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+        </div>
+      </td>
       <td>{{ user.code }}</td>
-      <td>{{ user.name }}</td>
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText type="text" [(ngModel)]="user.name">
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{user.name }}
+          </ng-template>
+        </p-cellEditor>
+      </td>
       <td>{{ user.birthDate | date }}</td>
       <td>{{ user.birthCity }}</td>
       <td>{{ user.id }}</td>
@@ -183,9 +201,8 @@
     <span class="text-xl font-bold">Edit Employee</span>
   </ng-template>
   <ng-template pTemplate="body">
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
+    <form (ngSubmit)="submitEdit()" [formGroup]="myForm">
+
+    </form>
   </ng-template>
 </p-dialog>
