@@ -7,6 +7,7 @@ const routes: Routes = [
   {
     'path': 'auth', canActivate: [authenticationGuard], children: [
       {'path': 'login', loadComponent: () => (import('./auth/login/login.component').then(m => m.LoginComponent))},
+      {'path': 'reset-password', loadComponent: () => (import('./auth/reset-password/reset-password.component').then(m=>m.ResetPasswordComponent))},
       {'path': '', 'pathMatch': "full", redirectTo: '/auth/login'}
     ]
   },

@@ -12,6 +12,7 @@ export class  ServiceUrl{
   public getAllDepartement = "/department/all";
   public getAllContractType = "/contractType/all";
   public updateUser = "/user/update";
+  resetPassword = "/auth/reset_password";
 
   constructor() {
     this.getUrl()
